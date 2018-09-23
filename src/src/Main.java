@@ -41,12 +41,18 @@ public class Main {
 		FIFOPageFails = ptFIFO.getPageFails();
 		LRUPageFails = ptLRU.getPageFails();
 		LRUPLPageFails = ptLRUPL.getPageFails();
-		
+
+		String resultDescriptionFormat ="The result of the %s algorithm:";
+
+		System.out.println(String.format(resultDescriptionFormat, "FIFO"));
 		System.out.println(sbFIFO.toString());
 		System.out.println(FIFOPageFails);
-		
+
+		System.out.println(String.format(resultDescriptionFormat, "LRU"));
 		System.out.println(sbLRU.toString());
 		System.out.println(LRUPageFails);
+
+		System.out.println(String.format(resultDescriptionFormat, "LRU-PL"));
 		System.out.println(sbLRUPL.toString());
 		System.out.println(LRUPLPageFails);
 		
