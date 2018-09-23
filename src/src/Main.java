@@ -22,8 +22,9 @@ public class Main {
 		
 		StringBuilder sbLRUPL = new StringBuilder("");
 		int LRUPLPageFails = 0;
-		
-		
+
+		System.out.println("Please specify the list of referred pages, separated by commas (i.e. 1,2,3) and end it with EOF.");
+
 		while (scanner.hasNextLine()) {
 			line = scanner.nextLine();
 			StringTokenizer st = new StringTokenizer(line, ",");
@@ -40,12 +41,18 @@ public class Main {
 		FIFOPageFails = ptFIFO.getPageFails();
 		LRUPageFails = ptLRU.getPageFails();
 		LRUPLPageFails = ptLRUPL.getPageFails();
-		
+
+		String resultDescriptionFormat ="The result of the %s algorithm:";
+
+		System.out.println(String.format(resultDescriptionFormat, "FIFO"));
 		System.out.println(sbFIFO.toString());
 		System.out.println(FIFOPageFails);
-		
+
+		System.out.println(String.format(resultDescriptionFormat, "LRU"));
 		System.out.println(sbLRU.toString());
 		System.out.println(LRUPageFails);
+
+		System.out.println(String.format(resultDescriptionFormat, "LRU-PL"));
 		System.out.println(sbLRUPL.toString());
 		System.out.println(LRUPLPageFails);
 		
