@@ -22,8 +22,9 @@ public class Main {
 		
 		StringBuilder sbLRUPL = new StringBuilder("");
 		int LRUPLPageFails = 0;
-		
-		
+
+		System.out.println("Please specify the list of referred pages, separated by commas (i.e. 1,2,3) and end it with EOF.");
+
 		while (scanner.hasNextLine()) {
 			line = scanner.nextLine();
 			StringTokenizer st = new StringTokenizer(line, ",");
