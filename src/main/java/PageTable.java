@@ -1,6 +1,6 @@
 public class PageTable {
-	private char[] frames = new char[100];
-	private boolean[] isValid = new boolean[100];
+	private char[] referredFrames = new char[100]; //stores the frame referred by each page
+	private boolean[] isValid = new boolean[100]; // stores if the referral is valid for each frame
 	private int counter = 1;
 	private SwitchAlgorithm switchAlgorithm;
 	private int pageFails = 0;
@@ -15,7 +15,7 @@ public class PageTable {
 	
 	public char referPage(int id) {
 		if (isValid[id]) {
-			switchAlgorithm.useFrame(frames[id], counter);
+			switchAlgorithm.useFrame(referredFrames[id], counter);
 			counter++;
 			return '-';
 		}
@@ -24,18 +24,16 @@ public class PageTable {
 		char frameName = switchAlgorithm.allocate(counter++);
 		//a regi bejegyzest ervenyteleniteni kell
 		for (int i = 0; i < 100; ++i) {
-			if(frameName == frames[i]) {
+			if(frameName == referredFrames[i]) {
 				isValid[i] = false;
 			}
 		}
 		
 		if (frameName != '*') {
 			isValid[id] = true;
-			frames[id] = frameName;
+			referredFrames[id] = frameName;
 		}
-		
-		
-		
+
 		return frameName;
 	}
 	

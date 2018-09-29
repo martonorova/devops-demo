@@ -25,4 +25,13 @@ class LRUTest {
 		assertEquals('A', lru.allocate(9));
 	}
 
+	@Test
+	void testFramesWithMaxReferTime() {
+		lru.pageFrameData.forEach(frame -> {
+			frame.setReferTime(Integer.MAX_VALUE);
+		});
+
+		assertEquals('*', lru.allocate(1));
+	}
+
 }
