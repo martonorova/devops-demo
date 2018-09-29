@@ -1,5 +1,3 @@
-package src;
-
 public class Frame {
 	private char name;
 	private boolean isFrozen = false;

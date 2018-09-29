@@ -1,9 +1,7 @@
-package src;
-
 import java.util.ArrayList;
 
 public abstract class SwitchAlgorithm {
-	protected ArrayList<Frame> pageFrameData = new ArrayList<>();
+	protected ArrayList<Frame> pageFrameData = new ArrayList();
 	
 	public SwitchAlgorithm() {
 		pageFrameData.add(new Frame('A'));

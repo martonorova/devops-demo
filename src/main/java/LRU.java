@@ -1,5 +1,3 @@
-package src;
-
 public class LRU extends SwitchAlgorithm {
 	public LRU() {
 		super();

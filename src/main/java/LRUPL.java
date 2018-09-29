@@ -1,5 +1,3 @@
-package src;
-
 public class LRUPL extends SwitchAlgorithm {
 	public LRUPL() {
 		
