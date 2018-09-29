@@ -30,10 +30,18 @@ class FIFOTest {
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		
-		
-		
-		
 	}
 
+	@Test
+    void testFramesWithMaxAllocTime() {
+
+	    fifo.pageFrameData.forEach(frame -> {
+            frame.setAllocTime(Integer.MAX_VALUE);
+        });
+
+	    assertThrows(IllegalArgumentException.class, () -> {
+	        fifo.allocate(1);
+        });
+
+    }
 }

@@ -7,23 +7,23 @@ public class FIFO extends SwitchAlgorithm {
 	@Override
 	public char allocate(int counter)/* throws Exception */{
 		char frameName = '*';
-		int minTime = 100000;
+		int minTime = Integer.MAX_VALUE;
 		Frame oldest = null;
-		for (Frame var : pageFrameData) {
-			if (var.getAllockTime() < minTime) {
-				minTime = var.getAllockTime();
-				oldest = var;
+		for (Frame frame : pageFrameData) {
+			if (frame.getAllocTime() < minTime) {
+				minTime = frame.getAllocTime();
+				oldest = frame;
 			}
 		}
+
 		if (oldest != null) {
-			oldest.setAllockTime(counter);
-			frameName = oldest.getName();
-			
-		}/* else {
-			throw new Exception("Every frame younger than " + minTime);
-		}*/
-		
-		
+            oldest.setAllocTime(counter);
+            frameName = oldest.getName();
+
+        } else {
+            throw new IllegalArgumentException("Each frame has maximum allocation time.");
+        }
+
 		return frameName;
 	}
 	

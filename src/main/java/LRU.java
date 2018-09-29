@@ -8,11 +8,11 @@ public class LRU extends SwitchAlgorithm {
 	public char allocate(int counter) {
 		char frameName = '*';
 		Frame leastRecUsed = null;
-		int minTime = 10000;
-		for (Frame var : pageFrameData) {
-			if (var.getReferTime() < minTime) {
-				minTime = var.getReferTime();
-				leastRecUsed = var;
+		int minTime = Integer.MAX_VALUE;
+		for (Frame frame : pageFrameData) {
+			if (frame.getReferTime() < minTime) {
+				minTime = frame.getReferTime();
+				leastRecUsed = frame;
 			}
 		}
 		
@@ -26,9 +26,9 @@ public class LRU extends SwitchAlgorithm {
 	
 	@Override
 	public void useFrame(char frameName, int counter) {
-		for (Frame var : pageFrameData) {
-			if (frameName == var.getName()) {
-				var.setReferTime(counter);
+		for (Frame frame : pageFrameData) {
+			if (frameName == frame.getName()) {
+				frame.setReferTime(counter);
 			}
 		}
 		

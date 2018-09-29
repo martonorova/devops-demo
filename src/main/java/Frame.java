@@ -1,7 +1,7 @@
 public class Frame {
 	private char name;
 	private boolean isFrozen = false;
-	private int allockTime = -1;
+	private int allocTime = -1;
 	private int referTime = -1;
 	
 	public int getReferTime() {
@@ -36,13 +36,13 @@ public class Frame {
 	}
 
 
-	public int getAllockTime() {
-		return allockTime;
+	public int getAllocTime() {
+		return allocTime;
 	}
 
 
-	public void setAllockTime(int allockTime) {
-		this.allockTime = allockTime;
+	public void setAllocTime(int allocTime) {
+		this.allocTime = allocTime;
 	}
 
 
