@@ -1,6 +1,3 @@
-package src;
-
-
 public class PageTable {
 	private char[] frames = new char[100];
 	private boolean[] isValid = new boolean[100];

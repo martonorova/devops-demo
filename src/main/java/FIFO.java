@@ -1,5 +1,3 @@
-package src;
-
 public class FIFO extends SwitchAlgorithm {
 	
 	public FIFO() {
