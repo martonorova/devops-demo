@@ -13,7 +13,8 @@ public class LRUPL extends SwitchAlgorithm {
 		Frame leastRecUsed = null;
 		int minTime = Integer.MAX_VALUE;
 		for (Frame frame : pageFrameData) {
-			if (!(frame.isFrozen() && counter - maxFrozenTime <= frame.getAllocTime()) && frame.getReferTime() < minTime ) {
+			if (!(frame.isFrozen() && counter - maxFrozenTime <= frame.getAllocTime())
+					&& frame.getReferTime() < minTime ) {
 				minTime = frame.getReferTime();
 				leastRecUsed = frame;
 			}
