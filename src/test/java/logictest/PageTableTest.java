@@ -8,6 +8,11 @@ import logic.LRUPL;
 import logic.PageTable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 class PageTableTest {
 	
@@ -22,21 +27,26 @@ class PageTableTest {
 		ptLRUPL = new PageTable(new LRUPL());
 	}
 
-	@Test
-	void testFIFO() {
-		assertEquals('A', ptFIFO.referPage(1));
-		assertEquals('-', ptFIFO.referPage(1));
-		
-		assertEquals('B', ptFIFO.referPage(2));
-		assertEquals('C', ptFIFO.referPage(3));
-		assertEquals('D', ptFIFO.referPage(4));
-		
-		assertEquals('-', ptFIFO.referPage(4));
-		
-		assertEquals('A', ptFIFO.referPage(5));
-		assertEquals('B', ptFIFO.referPage(80));
-		assertEquals(6, ptFIFO.getPageFails());
-	}
+	@ParameterizedTest
+    @MethodSource("testFIFOProvider")
+    void testFIFO(char frameName, int pageID, PageTable ptFIFO, int cntPageFails) {
+	    assertEquals(frameName, ptFIFO.referPage(pageID));
+	    assertEquals(cntPageFails, ptFIFO.getPageFails());
+    }
+
+    static Stream<Arguments> testFIFOProvider() {
+	    PageTable ptFIFO = new PageTable(new FIFO());
+	    return Stream.of(
+	            Arguments.of('A', 1, ptFIFO, 1),
+                Arguments.of('-', 1, ptFIFO, 1),
+                Arguments.of('B', 2, ptFIFO, 2),
+                Arguments.of('C', 3, ptFIFO, 3),
+                Arguments.of('D', 4, ptFIFO, 4),
+                Arguments.of('-', 4, ptFIFO, 4),
+                Arguments.of('A', 5, ptFIFO, 5),
+                Arguments.of('B', 80, ptFIFO, 6)
+        );
+    }
 	
 	@Test
 	void testLRU() {
@@ -51,6 +61,8 @@ class PageTableTest {
 		
 		assertEquals('B', ptLRU.referPage(5));
 	}
+
+	
 	
 	@Test
 	void testLRUPL() {

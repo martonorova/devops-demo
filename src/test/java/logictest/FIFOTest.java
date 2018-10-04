@@ -3,40 +3,39 @@ package logictest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import logic.FIFO;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 class FIFOTest {
-	private FIFO fifo = new FIFO();
 
-	@BeforeEach
-	void setUp() throws Exception {
-	}
+	@ParameterizedTest
+    @MethodSource("testAllocateProvider")
+    void testAllocate(char frameName, int counter, FIFO fifo) {
+	    assertEquals(frameName, fifo.allocate(counter));
+    }
 
-	@Test
-	void test() {
-		try {
-			assertEquals('A', fifo.allocate(1));
-			assertEquals('B', fifo.allocate(2));
-			assertEquals('C', fifo.allocate(3));
-			assertEquals('D', fifo.allocate(4));
-			
-			assertEquals('A', fifo.allocate(5));
-			assertEquals('B', fifo.allocate(6));
-			assertEquals('C', fifo.allocate(7));
-			assertEquals('D', fifo.allocate(8));
-			
-			assertEquals('A', fifo.allocate(9));
-			assertEquals('B', fifo.allocate(10));
-			assertEquals('C', fifo.allocate(11));
-			assertEquals('D', fifo.allocate(12));
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		}
-	}
+    static Stream<Arguments> testAllocateProvider() {
+	    FIFO fifo = new FIFO();
+	    return Stream.of(
+	            Arguments.of('A', 1, fifo),
+                Arguments.of('B', 2, fifo),
+                Arguments.of('C', 3, fifo),
+                Arguments.of('D', 4, fifo),
+                Arguments.of('A', 5, fifo),
+                Arguments.of('B', 6, fifo),
+                Arguments.of('C', 7, fifo),
+                Arguments.of('D', 8, fifo)
+        );
+    }
 
 	@Test
     void testFramesWithMaxAllocTime() {
+
+	    FIFO fifo = new FIFO();
 
 	    fifo.getPageFrameData().forEach(frame -> {
             frame.setAllocTime(Integer.MAX_VALUE);
@@ -45,6 +44,5 @@ class FIFOTest {
 	    assertThrows(IllegalArgumentException.class, () -> {
 	        fifo.allocate(1);
         });
-
     }
 }

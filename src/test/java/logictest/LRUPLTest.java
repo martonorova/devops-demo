@@ -3,8 +3,6 @@ package logictest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import logic.LRUPL;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,21 +10,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 class LRUPLTest {
-	//private static LRUPL lrupl;
-
-	@BeforeAll
-    static void initAll() {
-	    //lrupl = new LRUPL();
-    }
-
-	@BeforeEach
-	void setUp() throws Exception {
-	}
 
 	@ParameterizedTest
     @MethodSource("testAllocateProvider")
 	void testAllocate(char frameName, int counter, LRUPL lrupl) {
-	    assertEquals(frameName, lrupl.allocate(counter));
+		assertEquals(frameName, lrupl.allocate(counter));
 	}
 
 	static Stream<Arguments> testAllocateProvider() {
