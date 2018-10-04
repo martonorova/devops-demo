@@ -1,3 +1,5 @@
+package logic;
+
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -42,15 +44,15 @@ public class Main {
 
 		String resultDescriptionFormat ="The result of the %s algorithm:";
 
-		System.out.println(String.format(resultDescriptionFormat, "FIFO"));
+		System.out.println(String.format(resultDescriptionFormat, "logic.FIFO"));
 		System.out.println(sbFIFO.toString());
 		System.out.println(FIFOPageFails);
 
-		System.out.println(String.format(resultDescriptionFormat, "LRU"));
+		System.out.println(String.format(resultDescriptionFormat, "logic.LRU"));
 		System.out.println(sbLRU.toString());
 		System.out.println(LRUPageFails);
 
-		System.out.println(String.format(resultDescriptionFormat, "LRU-PL"));
+		System.out.println(String.format(resultDescriptionFormat, "logic.LRU-PL"));
 		System.out.println(sbLRUPL.toString());
 		System.out.println(LRUPLPageFails);
 		

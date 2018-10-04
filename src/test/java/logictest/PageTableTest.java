@@ -1,5 +1,11 @@
+package logictest;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import logic.FIFO;
+import logic.LRU;
+import logic.LRUPL;
+import logic.PageTable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

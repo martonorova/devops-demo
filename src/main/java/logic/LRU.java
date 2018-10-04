@@ -1,20 +1,18 @@
-public class LRUPL extends SwitchAlgorithm {
+package logic;
 
-	private int maxFrozenTime = 5;
-
-	public LRUPL() {
+public class LRU extends SwitchAlgorithm {
+	public LRU() {
+		super();
 		
 	}
 	
 	@Override
 	public char allocate(int counter) {
-		
 		char frameName = '*';
 		Frame leastRecUsed = null;
 		int minTime = Integer.MAX_VALUE;
 		for (Frame frame : pageFrameData) {
-			if (!(frame.isFrozen() && counter - maxFrozenTime <= frame.getAllocTime())
-					&& frame.getReferTime() < minTime ) {
+			if (frame.getReferTime() < minTime) {
 				minTime = frame.getReferTime();
 				leastRecUsed = frame;
 			}
@@ -22,8 +20,6 @@ public class LRUPL extends SwitchAlgorithm {
 		
 		if (leastRecUsed != null) {
 			leastRecUsed.setReferTime(counter);
-			leastRecUsed.setAllocTime(counter);
-			leastRecUsed.setFrozen(true);
 			frameName = leastRecUsed.getName();
 		}
 		
@@ -35,8 +31,8 @@ public class LRUPL extends SwitchAlgorithm {
 		for (Frame frame : pageFrameData) {
 			if (frameName == frame.getName()) {
 				frame.setReferTime(counter);
-				frame.setFrozen(false);
 			}
 		}
+		
 	}
 }

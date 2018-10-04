@@ -1,5 +1,8 @@
+package logictest;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+import logic.FIFO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +38,7 @@ class FIFOTest {
 	@Test
     void testFramesWithMaxAllocTime() {
 
-	    fifo.pageFrameData.forEach(frame -> {
+	    fifo.getPageFrameData().forEach(frame -> {
             frame.setAllocTime(Integer.MAX_VALUE);
         });
 

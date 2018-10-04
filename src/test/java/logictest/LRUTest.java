@@ -1,5 +1,8 @@
+package logictest;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import logic.LRU;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +30,7 @@ class LRUTest {
 
 	@Test
 	void testFramesWithMaxReferTime() {
-		lru.pageFrameData.forEach(frame -> {
+		lru.getPageFrameData().forEach(frame -> {
 			frame.setReferTime(Integer.MAX_VALUE);
 		});
 

@@ -1,3 +1,5 @@
+package logic;
+
 public class Frame {
 	private char name;
 	private boolean isFrozen = false;

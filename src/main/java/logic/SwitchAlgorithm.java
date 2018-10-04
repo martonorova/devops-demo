@@ -1,6 +1,10 @@
+package logic;
+
 import java.util.ArrayList;
 
 public abstract class SwitchAlgorithm {
+
+
 	protected ArrayList<Frame> pageFrameData = new ArrayList();
 	
 	public SwitchAlgorithm() {
@@ -13,6 +17,10 @@ public abstract class SwitchAlgorithm {
 
 	public abstract void useFrame(char frameName, int counter);
 	public abstract char allocate(int counter) /*throws Exception*/;
+
+	public ArrayList<Frame> getPageFrameData() {
+		return pageFrameData;
+	}
 	
 	
 }

@@ -1,3 +1,5 @@
+package logic;
+
 public class PageTable {
 	private char[] referredFrames = new char[100]; //stores the frame referred by each page
 	private boolean[] isValid = new boolean[100]; // stores if the referral is valid for each frame

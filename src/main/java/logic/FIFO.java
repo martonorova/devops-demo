@@ -1,3 +1,5 @@
+package logic;
+
 public class FIFO extends SwitchAlgorithm {
 	
 	public FIFO() {
