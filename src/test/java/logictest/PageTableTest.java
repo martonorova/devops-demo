@@ -37,7 +37,7 @@ class PageTableTest {
     static Stream<Arguments> testFIFOProvider() {
 	    PageTable ptFIFO = new PageTable(new FIFO());
 	    return Stream.of(
-	            Arguments.of('B', 1, ptFIFO, 1),
+	            Arguments.of('A', 1, ptFIFO, 1),
                 Arguments.of('-', 1, ptFIFO, 1),
                 Arguments.of('B', 2, ptFIFO, 2),
                 Arguments.of('C', 3, ptFIFO, 3),
