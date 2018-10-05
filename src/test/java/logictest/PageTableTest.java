@@ -15,23 +15,23 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 class PageTableTest {
-	
-	private PageTable ptFIFO;
-	private PageTable ptLRU;
-	private PageTable ptLRUPL;
 
-	@BeforeEach
-	void setUp() throws Exception {
-		ptFIFO = new PageTable(new FIFO());
-		ptLRU = new PageTable(new LRU());
-		ptLRUPL = new PageTable(new LRUPL());
-	}
+	//TODO if a test fails, get name of the source
+
 
 	@ParameterizedTest
-    @MethodSource("testFIFOProvider")
-    void testFIFO(char frameName, int pageID, PageTable ptFIFO, int cntPageFails) {
-	    assertEquals(frameName, ptFIFO.referPage(pageID));
-	    assertEquals(cntPageFails, ptFIFO.getPageFails());
+    @MethodSource(
+            {"testFIFOProvider",
+            "testLRUProvider",
+            "testLRUPLProvider",
+            "testFIFOOriginalInputProvider",
+            "testLRUOriginalInputProvider",
+            "testLRUPLOriginalInputProvider"
+            }
+    )
+    void testPageTable(char frameName, int pageID, PageTable pageTable, int cntPageFails) {
+        assertEquals(frameName, pageTable.referPage(pageID));
+        assertEquals(cntPageFails, pageTable.getPageFails());
     }
 
     static Stream<Arguments> testFIFOProvider() {
@@ -47,67 +47,68 @@ class PageTableTest {
                 Arguments.of('B', 80, ptFIFO, 6)
         );
     }
-	
-	@Test
-	void testLRU() {
-		assertEquals('A', ptLRU.referPage(1));
-		
-		
-		assertEquals('B', ptLRU.referPage(2));
-		assertEquals('C', ptLRU.referPage(3));
-		assertEquals('D', ptLRU.referPage(4));
-		
-		assertEquals('-', ptLRU.referPage(1));
-		
-		assertEquals('B', ptLRU.referPage(5));
+
+	static Stream<Arguments> testLRUProvider() {
+		PageTable ptLRU = new PageTable(new LRU());
+		return Stream.of(
+				Arguments.of('A', 1, ptLRU, 1),
+				Arguments.of('B', 2, ptLRU, 2),
+				Arguments.of('C', 3, ptLRU, 3),
+				Arguments.of('D', 4, ptLRU, 4),
+				Arguments.of('-', 1, ptLRU, 4),
+				Arguments.of('B', 5, ptLRU, 5)
+				);
 	}
 
-	
-	
-	@Test
-	void testLRUPL() {
-		assertEquals('A', ptLRUPL.referPage(1));
-		assertEquals('B', ptLRUPL.referPage(2));
-		assertEquals('C', ptLRUPL.referPage(3));
-		assertEquals('D', ptLRUPL.referPage(4));
-		
-		assertEquals('*', ptLRUPL.referPage(5));
-		assertEquals('*', ptLRUPL.referPage(5));
-		assertEquals('A', ptLRUPL.referPage(5));
-	}
-	
-	@Test
-	void originalInputTestFIFO() {
-		assertEquals('A', ptFIFO.referPage(1));
-		assertEquals('B', ptFIFO.referPage(2));
-		assertEquals('C', ptFIFO.referPage(3));
-		assertEquals('D', ptFIFO.referPage(4));
-		assertEquals('-', ptFIFO.referPage(1));
-		assertEquals('A', ptFIFO.referPage(5));
-		assertEquals('B', ptFIFO.referPage(1));
-	}
-	
-	@Test
-	void originalInputTestLRU() {
-		assertEquals('A', ptLRU.referPage(1));
-		assertEquals('B', ptLRU.referPage(2));
-		assertEquals('C', ptLRU.referPage(3));
-		assertEquals('D', ptLRU.referPage(4));
-		assertEquals('-', ptLRU.referPage(1));
-		assertEquals('B', ptLRU.referPage(5));
-		assertEquals('-', ptLRU.referPage(1));
-	}
-	
-	@Test
-	void originalInputTestLRUPL() {
-		assertEquals('A', ptLRUPL.referPage(1));
-		assertEquals('B', ptLRUPL.referPage(2));
-		assertEquals('C', ptLRUPL.referPage(3));
-		assertEquals('D', ptLRUPL.referPage(4));
-		assertEquals('-', ptLRUPL.referPage(1));
-		assertEquals('A', ptLRUPL.referPage(5));
-		assertEquals('*', ptLRUPL.referPage(1));
-		
-	}
+    static Stream<Arguments> testLRUPLProvider() {
+	    PageTable ptLRUPL = new PageTable(new LRUPL());
+	    return Stream.of(
+	            Arguments.of('A', 1, ptLRUPL, 1),
+                Arguments.of('B', 2, ptLRUPL, 2),
+                Arguments.of('C', 3, ptLRUPL, 3),
+                Arguments.of('D', 4, ptLRUPL, 4),
+                Arguments.of('*', 5, ptLRUPL, 5),
+                Arguments.of('*', 5, ptLRUPL, 6),
+                Arguments.of('A', 5, ptLRUPL, 7)
+        );
+    }
 
+	static Stream<Arguments> testFIFOOriginalInputProvider() {
+	    PageTable ptFIFO = new PageTable(new FIFO());
+        return Stream.of(
+                Arguments.of('A', 1, ptFIFO, 1),
+                Arguments.of('B', 2, ptFIFO, 2),
+                Arguments.of('C', 3, ptFIFO, 3),
+                Arguments.of('D', 4, ptFIFO, 4),
+                Arguments.of('-', 1, ptFIFO, 4),
+                Arguments.of('A', 5, ptFIFO, 5),
+                Arguments.of('B', 1, ptFIFO, 6)
+        );
+    }
+
+	static Stream<Arguments> testLRUOriginalInputProvider() {
+	    PageTable ptLRU = new PageTable(new LRU());
+	    return Stream.of(
+	            Arguments.of('A', 1, ptLRU, 1),
+                Arguments.of('B', 2, ptLRU, 2),
+                Arguments.of('C', 3, ptLRU, 3),
+                Arguments.of('D', 4, ptLRU, 4),
+                Arguments.of('-', 1, ptLRU, 4),
+                Arguments.of('B', 5, ptLRU, 5),
+                Arguments.of('-', 1, ptLRU, 5)
+        );
+    }
+
+    static Stream<Arguments> testLRUPLOriginalInputProvider() {
+        PageTable ptLRUPL = new PageTable(new LRUPL());
+        return Stream.of(
+                Arguments.of('A', 1, ptLRUPL, 1),
+                Arguments.of('B', 2, ptLRUPL, 2),
+                Arguments.of('C', 3, ptLRUPL, 3),
+                Arguments.of('D', 4, ptLRUPL, 4),
+                Arguments.of('-', 1, ptLRUPL, 4),
+                Arguments.of('A', 5, ptLRUPL, 5),
+                Arguments.of('*', 1, ptLRUPL, 6)
+        );
+    }
 }
