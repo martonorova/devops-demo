@@ -46,5 +46,9 @@ public class PageTable {
 	public void setPageFails(int pageFails) {
 		this.pageFails = pageFails;
 	}
-	
+
+    @Override
+    public String toString() {
+        return String.format("%s using %s", this.getClass().getSimpleName(), switchAlgorithm.toString());
+    }
 }

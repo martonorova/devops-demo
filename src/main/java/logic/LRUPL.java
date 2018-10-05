@@ -41,4 +41,9 @@ public class LRUPL extends SwitchAlgorithm {
 			}
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "LRUPL";
+	}
 }

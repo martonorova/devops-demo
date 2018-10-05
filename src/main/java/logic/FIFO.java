@@ -31,4 +31,9 @@ public class FIFO extends SwitchAlgorithm {
 	
 	@Override
 	public void useFrame(char frameName, int counter) {}
+
+	@Override
+	public String toString() {
+		return "FIFO";
+	}
 }

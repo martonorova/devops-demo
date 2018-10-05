@@ -35,4 +35,9 @@ public class LRU extends SwitchAlgorithm {
 		}
 		
 	}
+
+	@Override
+	public String toString() {
+		return "LRU";
+	}
 }
