@@ -7,6 +7,7 @@ import logic.LRU;
 import logic.LRUPL;
 import logic.PageTable;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -18,8 +19,7 @@ class PageTableTest {
 
 	//TODO if a test fails, get name of the source
 
-
-	@ParameterizedTest
+	@ParameterizedTest(name = "{index} ==> frameName= ''{0}'', pageID= {1}, pageTable= {2}, cntPageFails= {3}")
     @MethodSource(
             {"testFIFOProvider",
             "testLRUProvider",
