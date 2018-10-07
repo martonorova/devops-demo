@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 class FIFOTest {
 
-	@ParameterizedTest(name = "[{index}] ==> frameName= ''{0}'', pageID= {1}, pageTable= {2}, cntPageFails= {3}")
+	@ParameterizedTest(name = "[{index}] ==> frameName= ''{0}'', pageID= {1}, pageTable= {2}")
     @MethodSource("testAllocateProvider")
     void testAllocate(char frameName, int counter, FIFO fifo) {
 	    assertEquals(frameName, fifo.allocate(counter));

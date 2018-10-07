@@ -12,13 +12,13 @@ import java.util.stream.Stream;
 
 class LRUTest {
 
-	@ParameterizedTest(name = "[{index}] ==> frameName= ''{0}'', pageID= {1}, pageTable= {2}, cntPageFails= {3}")
+	@ParameterizedTest(name = "[{index}] ==> frameName= ''{0}'', pageID= {1}, pageTable= {2}")
 	@MethodSource("testAllocateSimpleProvider")
 	void testAllocateSimple(char frameName, int counter, LRU lru) {
 		assertEquals(frameName, lru.allocate(counter));
 	}
 
-	@ParameterizedTest
+	@ParameterizedTest(name = "[{index}] ==> frameName= ''{0}'', pageID= {1}, pageTable= {2}")
 	@MethodSource("testAllocateWithUseProvider")
 	void testAllocateWithUse(char frameName, int counter, LRU lru) {
 		for (int i = 0; i < 4; i++) {
