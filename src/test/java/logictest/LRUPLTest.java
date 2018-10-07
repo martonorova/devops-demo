@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 class LRUPLTest {
 
-	@ParameterizedTest
+	@ParameterizedTest(name = "[{index}] ==> frameName= ''{0}'', pageID= {1}, pageTable= {2}, cntPageFails= {3}")
     @MethodSource("testAllocateProvider")
 	void testAllocate(char frameName, int counter, LRUPL lrupl) {
 		assertEquals(frameName, lrupl.allocate(counter));

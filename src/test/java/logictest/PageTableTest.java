@@ -19,7 +19,7 @@ class PageTableTest {
 
 	//TODO if a test fails, get name of the source
 
-	@ParameterizedTest(name = "{index} ==> frameName= ''{0}'', pageID= {1}, pageTable= {2}, cntPageFails= {3}")
+	@ParameterizedTest(name = "[{index}] ==> frameName= ''{0}'', pageID= {1}, pageTable= {2}, cntPageFails= {3}")
     @MethodSource(
             {"testFIFOProvider",
             "testLRUProvider",
