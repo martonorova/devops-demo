@@ -1,9 +1,10 @@
 package logic;
 
 public class LRU extends SwitchAlgorithm {
+
 	public LRU() {
 		super();
-		
+		algorithmType = AlgorithmType.LRU;
 	}
 	
 	@Override
@@ -34,6 +35,11 @@ public class LRU extends SwitchAlgorithm {
 			}
 		}
 		
+	}
+
+	@Override
+	public AlgorithmType getType() {
+		return algorithmType;
 	}
 
 	@Override

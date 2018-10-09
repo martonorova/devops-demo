@@ -4,6 +4,7 @@ public class FIFO extends SwitchAlgorithm {
 	
 	public FIFO() {
 		super();
+		algorithmType = AlgorithmType.FIFO;
 	}
 	
 	@Override
@@ -31,6 +32,11 @@ public class FIFO extends SwitchAlgorithm {
 	
 	@Override
 	public void useFrame(char frameName, int counter) {}
+
+	@Override
+	public AlgorithmType getType() {
+		return algorithmType;
+	}
 
 	@Override
 	public String toString() {

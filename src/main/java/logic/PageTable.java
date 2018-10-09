@@ -1,8 +1,9 @@
 package logic;
 
 public class PageTable {
-	private char[] referredFrames = new char[100]; //stores the frame referred by each page
-	private boolean[] isValid = new boolean[100]; // stores if the referral is valid for each frame
+	private int size = 100;
+	private char[] referredFrames = new char[size]; //stores the frame referred by each page
+	private boolean[] isValid = new boolean[size]; // stores if the referral is valid for each frame
 	private int counter = 1;
 	private SwitchAlgorithm switchAlgorithm;
 	private int pageFails = 0;
@@ -43,8 +44,11 @@ public class PageTable {
 		return pageFails;
 	}
 
-	public void setPageFails(int pageFails) {
-		this.pageFails = pageFails;
+	public void reset() {
+		referredFrames = new char[size];
+		isValid = new boolean[size];
+		counter = 0;
+		pageFails = 0;
 	}
 
     @Override
