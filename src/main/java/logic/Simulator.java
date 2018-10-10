@@ -34,4 +34,8 @@ public class Simulator {
                 new PageTable(new LRUPL()));
     }
 
+    public void resetPageTable(SwitchAlgorithm.AlgorithmType algorithmType) {
+        pageTableMap.get(algorithmType).reset();
+    }
+
 }

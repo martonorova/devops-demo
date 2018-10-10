@@ -7,6 +7,9 @@ public class SimulationParameters {
     private SwitchAlgorithm.AlgorithmType algorithmType;
     private List<Integer> referredPageIDs;
 
+    public SimulationParameters() {
+    }
+
     public SimulationParameters(SwitchAlgorithm.AlgorithmType algorithmType, List<Integer> referredPageIDs) {
         this.algorithmType = algorithmType;
         this.referredPageIDs = referredPageIDs;
@@ -16,6 +19,8 @@ public class SimulationParameters {
         this.algorithmType = algorithmType;
         referredPageIDs = new ArrayList<>();
     }
+
+
 
     public SwitchAlgorithm.AlgorithmType getAlgorithmType() {
         return algorithmType;

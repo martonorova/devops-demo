@@ -45,6 +45,7 @@ public class PageTable {
 	}
 
 	public void reset() {
+		switchAlgorithm.reset();
 		referredFrames = new char[size];
 		isValid = new boolean[size];
 		counter = 0;
