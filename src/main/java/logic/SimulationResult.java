@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SimulationResult {
-    private List<Character> usedFrameNames = new ArrayList<>();
-    private int pageFails = 0;
     private SwitchAlgorithm.AlgorithmType algorithmType;
+    private List<Character> usedFrameNames = new ArrayList<>();
+    private int pageFails;
+
 
     public void addUsedFrameName(char frameName) {
         usedFrameNames.add(frameName);
