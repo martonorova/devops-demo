@@ -1,6 +1,7 @@
 package logictest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import logic.FIFO;
 import logic.LRU;

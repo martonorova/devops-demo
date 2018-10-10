@@ -5,7 +5,8 @@ public class LRUPL extends SwitchAlgorithm {
 	private int maxFrozenTime = 5;
 
 	public LRUPL() {
-		
+		super();
+		algorithmType = AlgorithmType.LRUPL;
 	}
 	
 	@Override
@@ -40,6 +41,11 @@ public class LRUPL extends SwitchAlgorithm {
 				frame.setFrozen(false);
 			}
 		}
+	}
+
+	@Override
+	public AlgorithmType getType() {
+		return algorithmType;
 	}
 
 	@Override
