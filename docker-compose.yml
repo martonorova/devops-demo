@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=devops_demo_db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=userpw
+    volumes:
+      - /tmp/data/mysql
+  devops-demo-app:
+    restart: on-failure
+    image: devops-demo
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+    volumes:
+      - /tmp/data/devops-demo-app
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_NAME=devops_demo_db
+      - DATABASE_USER=user
+      - DATABASE_PASSWORD=userpw
+      - DATABASE_PORT=3306
