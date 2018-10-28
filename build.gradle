@@ -38,7 +38,6 @@ repositories {
      maven { url "http://repo.maven.apache.org/maven2" }
 }
 dependencies {
-    //compile group: 'org.jacoco', name: 'jacoco-maven-plugin', version:'0.7.9'
 
     compile("org.springframework.boot:spring-boot-starter-web")
     
