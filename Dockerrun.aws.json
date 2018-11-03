@@ -15,5 +15,5 @@
       "ContainerDirectory": "/var/devops-demo-app"
     }
   ],
-  "Logging": "var/log/app"
+  "Logging": "/var/log/app"
 }
