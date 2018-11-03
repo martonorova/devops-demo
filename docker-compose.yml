@@ -10,12 +10,12 @@ services:
       - MYSQL_PASSWORD=userpw
     volumes:
       - /tmp/data/mysql
-  devops-demo-app:
+  app:
     restart: on-failure
-    image: devops-demo
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: morova/devops-demo:latest
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
     depends_on:
       - db
     ports:
