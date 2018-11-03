@@ -1,0 +1,19 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "morova/devops-demo",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "8080"
+    }
+  ],
+  "Volumes": [
+    {
+      "HostDirectory": "/var/devops-demo-app",
+      "ContainerDirectory": "/var/devops-demo-app"
+    }
+  ],
+  "Logging": "var/log/app"
+}
